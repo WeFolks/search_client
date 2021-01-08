@@ -23,15 +23,31 @@ func main() {
 	c := grpc.NewSearchServiceClient(conn)
 
 	request := grpc.SearchRequest{
-		Name:     "sarth",
+		Name:     "folks",
 		Category: "",
 	}
 
 	response, err := c.GetItems(context.Background(), &request)
 
+	// item := grpc.Item{
+	// 	Id:          "12345",
+	// 	Name:        "folks",
+	// 	Owner:       "",
+	// 	Category:    "",
+	// 	Description: "",
+	// 	Type:        1,
+	// }
+
+	// _, err = c.AddItem(context.Background(), &item)
+
+	// if err != nil {
+	// 	fmt.Println(err)
+	// }
+
 	items := response.Items
 
 	for _, element := range items {
 		fmt.Println(element.Name)
+		fmt.Println(element.Description)
 	}
 }
